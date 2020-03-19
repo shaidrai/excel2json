@@ -8,7 +8,7 @@ import requests
 
 AllowedFiles = ['xlsx', 'csv']
 
-
+token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTcwNDkxMDE5ZDBhOTI3ZDBiMGZiNmMiLCJpYXQiOjE1ODQ0MTk2OTJ9.ucHMyz9VR-MMyLTyodXfpS53wBB-ekFVvppi4H-yK6E'
 def check_ex(filename):
     return filename.split('.')[-1] in AllowedFiles
 
@@ -33,15 +33,25 @@ def upload_file():
             file.save(full_path)
 
             data = excel2json.formatExcel(full_path)
-            data = json.dumps((data))
-            print('stack')
-            x = requests.post(url, data, headers=headers)
+            print(data)
+            data = json.dumps(data)
+            res = requests.post(url, data= data, headers= {'Accept': '*/*',
+             'Accept-Encoding': 'gzip, deflate',
+             'Connection': 'close',
+             'Content-Length': '16',
+             'Content-Type': 'application/json',
+             'User-Agent': 'python-requests/2.4.3 CPython/3.4.0',
+             'X-Request-Id': 'xx-xx-xx', 'Authorization': token })
+
+            print(res)
+            print(res.content)
             return json.dumps({'success': True})
     except Exception as e:
         print(e)
-        res = Response(json.dumps({'success': False, 'error': str(e), 'nitzan': 'ata homo tauf mipo hofer גנון'}), status=400)
+        res = Response(json.dumps({'success': False, 'error': str(e)}), status=400)
         return res
 
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True, host= '0.0.0.0')
+    app.run(port=5000, debug=True)
+
