@@ -1,4 +1,4 @@
-
+gunicorn==19.9.0
 appnope==0.1.0
 backcall==0.1.0
 bleach==3.0.2
