@@ -1,23 +1,16 @@
 # data format schema
-prop = {'room': {
+prop = {
+
+'roomNum': {
     'type': 'number',
 
 },
-    'daysLeft': {
-        'type': 'number'
-    },
+    
     'conversation': {
         'type': 'boolean',
 
     },
-    'underAge': {
-        'type': 'boolean',
-
-    },
-    'allergys': {
-        'type': 'string',
-    },
-    'shabat': {
+    'religious': {
         'type': 'boolean',
 
     },
@@ -25,18 +18,30 @@ prop = {'room': {
         'type': 'string',
 
     },
-    'replacedPhone': {
+    'contactPhone': {
         'type': 'string',
 
     },
-    'foodSensitivity': {
-        'type': 'string'
-    },
-    'releaseDate': {
-        'type': 'string',
 
-    },
+    # Dates
+
     'hafnayaDate': {
+        'type': 'string',
+
+    },
+    'hafnayaTime': {
+        'type': 'string',
+
+    },
+    'receptionDate': {
+        'type': 'string',
+
+    },
+    'receptionTime': {
+        'type': 'string',
+
+    },
+    'collectingDate': {
         'type': 'string',
 
     },
@@ -44,27 +49,68 @@ prop = {'room': {
         'type': 'string',
 
     },
-    'registrationTime': {
+    'releaseDate': {
         'type': 'string',
 
     },
-    'IDNumber': {
+
+
+
+
+
+'familyStatus': {
+    'type': 'string'
+},
+'numChildren': {
+    'type': 'string'
+},
+
+'sex': {
+    'type': 'string'
+},
+
+'collectingAddress': {
+    'type': 'string'
+},
+
+'origin': {
+    'type': 'string'
+},
+
+'sourceHospital': {
+    'type': 'string'
+},
+
+'age': {
+    'type': 'number'
+},
+
+'apotropus': {
+    'type': 'string'
+},
+
+'birthCountry': {
+    'type': 'string'
+},
+
+'language': {
+    'type': 'string'
+},
+
+'altContactPhone': {
+    'type': 'string'
+},
+
+
+    'id': {
         'type': 'string',
 
     },
-    'fullAddress': {
+    'address': {
         'type': 'string'
     },
     'city': {
         'type': 'string',
-
-    },
-    'street': {
-        'type': 'string',
-
-    },
-    'houseNumber': {
-        'type': 'number',
 
     },
     'firstName': {
@@ -75,44 +121,56 @@ prop = {'room': {
         'type': 'string',
 
     },
-    'HMO': {
-        'type': 'string',
-
-    },
-    'MDA': {
+    'mda': {
         'type': 'boolean',
 
     },
-    'status': {
+    'comments': {
         'type': 'string',
 
     },
-    'serialNumber': {
-        'type': 'number',
+    'disabilities': {
+        'type': 'string',
 
-    }}
+    },
+    'allergies': {
+        'type': 'string',
+
+    },
+    'foodRestrictions': {
+        'type': 'string',
+
+    },
+    'guidelines': {
+        'type': 'boolean',
+
+    },
+    'sentToKabala': {
+        'type': 'boolean',
+
+    },
+    'realeased': {
+        'type': 'boolean',
+
+    }
+    
+
+
+
+    }
+
+
 schema = {
     "type": "object",
     "properties": prop,
 
     "required":
-        ['room',
-         'conversation',
-         'underAge',
-         'shabat',
-         'phone',
-         'replacedPhone',
-         'releaseDate',
-         'hafnayaDate',
-         'IDNumber',
-         'city',
-         'arrivingTime',
-         'registrationTime',
-         'street',
-         'houseNumber',
+        [
+         'id',
+         
          'firstName',
          'lastName',
-         'HMO',
-         'MDA',
-         'status']
+         'city',
+         'address',
+         'phone']
 }
