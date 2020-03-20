@@ -28,6 +28,7 @@ def upload_file():
         print('req')
         file = request.files['file']
         token = request.headers['Authorization']
+        
         if check_ex(file.filename):
             full_path = './' + file.filename
             file.save(full_path)
