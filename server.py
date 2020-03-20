@@ -8,14 +8,14 @@ import requests
 
 AllowedFiles = ['xlsx', 'csv']
 
-token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTcwNDkxMDE5ZDBhOTI3ZDBiMGZiNmMiLCJpYXQiOjE1ODQ0MTk2OTJ9.ucHMyz9VR-MMyLTyodXfpS53wBB-ekFVvppi4H-yK6E'
+
 def check_ex(filename):
     return filename.split('.')[-1] in AllowedFiles
 
 #def save_file()
 
 app = Flask(__name__)
-url = 'http://10.0.3.161:5000/infecteds/excel'
+url = 'https://fieldhospital.azurewebsites.net/infecteds/excel'
 
 @app.route('/', methods=['GET'])
 def test():
@@ -27,7 +27,7 @@ def upload_file():
     try:
         print('req')
         file = request.files['file']
-        headers = request.headers
+        token = request.headers['Authorization']
         if check_ex(file.filename):
             full_path = './' + file.filename
             file.save(full_path)
@@ -45,7 +45,13 @@ def upload_file():
 
             print(res)
             print(res.content)
-            return json.dumps({'success': True})
+            if res.status_code == 200 or res.status_code == 201:
+
+            	return json.dumps({'success': True})
+
+            else:
+            	res = Response(json.dumps({'success': False, 'error': str(res.content)}), status=res.status_code)
+
     except Exception as e:
         print(e)
         res = Response(json.dumps({'success': False, 'error': str(e)}), status=400)
