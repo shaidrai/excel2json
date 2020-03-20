@@ -62,3 +62,4 @@ webencodings==0.5.1
 Werkzeug==1.0.0
 widgetsnbextension==3.4.2
 xlrd==1.2.0
+Flask-Cors==3.0.8

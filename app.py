@@ -5,6 +5,7 @@ import os
 import json
 import excel2json
 import requests
+from flask_cors import CORS, cross_origin
 
 AllowedFiles = ['xlsx', 'csv']
 
@@ -23,14 +24,19 @@ def check_ex(filename):
 #def save_file()
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 url = 'https://fieldhospital.azurewebsites.net/infecteds/excel'
 
 @app.route('/', methods=['GET'])
+@cross_origin()
 def test():
     return json.dumps({"test":'1'})
 
 
 @app.route('/api/excel2json', methods=['POST'])
+@cross_origin()
 def upload_file():
     try:
         print('req')
