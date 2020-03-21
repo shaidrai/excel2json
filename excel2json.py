@@ -7,7 +7,7 @@ import schema
 # Convert the dictionary pandas format to array with objects
 def pandasDictFormat(ditionary):
     data = []
-    int2string = ['phone','contactPhone','idNumber','numChildren','altContactPhone']
+    int2string = ['phone','contactPhone','IDNumber','numChildren','altContactPhone']
                   
     for counter in range(len(ditionary['roomNum'])):
         dict1 = {}

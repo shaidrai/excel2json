@@ -94,7 +94,7 @@ prop = {
 },
 
 
-    'idNumber': {
+    'IDNumber': {
         'type': 'string',
 
     },
@@ -158,7 +158,7 @@ schema = {
 
     "required":
         [
-         'idNumber',
+         'IDNumber',
          
          'firstName',
          'lastName',
