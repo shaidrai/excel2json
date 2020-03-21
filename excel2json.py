@@ -2,13 +2,17 @@ import pandas as pd
 import time
 import jsonschema
 import schema
+
+
 # Convert the dictionary pandas format to array with objects
 def pandasDictFormat(ditionary):
     data = []
-    for counter in range(len(ditionary['room'])):
+    int2string = ['phone','contactPhone','idNumber','numChildren','altContactPhone']
+                  
+    for counter in range(len(ditionary['roomNum'])):
         dict1 = {}
         for key, val in ditionary.items():
-            if key == 'phone' or key == 'replacedPhone' or key == 'IDNumber':
+            if key in int2string:
                 dict1[key] = str(val[counter])
             else:
                 dict1[key] = val[counter]
@@ -40,4 +44,3 @@ def formatExcel(path):
         shaiValidate(row)
         # Use try except outside of the function
     return data
-
