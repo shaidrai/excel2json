@@ -94,7 +94,7 @@ prop = {
 },
 
 
-    'id': {
+    'idNumber': {
         'type': 'string',
 
     },
