@@ -25,7 +25,7 @@ prop = {
 
     # Dates
 
-    'hafnayaDate': {
+    'releaseDate': {
         'type': 'string',
 
     },
@@ -33,11 +33,7 @@ prop = {
         'type': 'string',
 
     },
-    'receptionDate': {
-        'type': 'string',
-
-    },
-    'receptionTime': {
+    'arrivingTime': {
         'type': 'string',
 
     },
@@ -45,11 +41,7 @@ prop = {
         'type': 'string',
 
     },
-    'arrivingTime': {
-        'type': 'string',
-
-    },
-    'releaseDate': {
+    'receptionTime': {
         'type': 'string',
 
     },
@@ -172,5 +164,11 @@ schema = {
          'lastName',
          'city',
          'address',
-         'phone']
+         'phone', 
+            'releaseDate',
+            'hafnayaTime',
+            'arrivingTime',
+            'collectingDate',
+            'receptionTime',
+         ]
 }

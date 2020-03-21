@@ -18,7 +18,13 @@ def pandasDictFormat(ditionary):
 
 # Validate the date and time format and replacing it to timestamp
 def shaiValidate(data):
-    dateKeys = ['hafnayaDate', 'hafnayaTime', 'receptionDate', 'receptionTime', 'receptionTime', 'collectingDate', 'arrivingTime', 'releaseDate']
+    
+    dateKeys = ['releaseDate',
+            'hafnayaTime',
+            'arrivingTime',
+            'collectingDate',
+            'receptionTime']
+
     for key, val in data.items():
         if key in dateKeys:
             data[key] = time.mktime(time.strptime(val, "%d.%m.%Y %H:%M")) * 1000
