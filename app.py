@@ -66,6 +66,7 @@ def upload_file():
 
             else:
             	res = Response(json.dumps({'success': False, 'error': str(res.content)}), status=res.status_code)
+                return res
 
     except Exception as e:
         print(e)
