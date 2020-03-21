@@ -27,7 +27,7 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-url = 'https://fieldhospital.azurewebsites.net/infecteds/excel'
+
 
 @app.route('/', methods=['GET'])
 @cross_origin()
@@ -41,32 +41,26 @@ def upload_file():
     try:
         print('req')
         file = request.files['file']
-        token = request.headers['Authorization']
         
         if check_ex(file.filename):
             full_path = './' + file.filename
+
+            # Saving the file
             file.save(full_path)
 
+            # Formating the file to json
             data = excel2json.formatExcel(full_path)
-            print(data)
+
+            # Deleting the file
+            os.remove(full_path)
+
+            print("finished formating")
             data = json.dumps(data)
-            res = requests.post(url, data= data, headers= {'Accept': '*/*',
-             'Accept-Encoding': 'gzip, deflate',
-             'Connection': 'close',
-             'Content-Length': '16',
-             'Content-Type': 'application/json',
-             'User-Agent': 'python-requests/2.4.3 CPython/3.4.0',
-             'X-Request-Id': 'xx-xx-xx', 'Authorization': token })
+            print(data)
 
-            print(res)
-            print(res.content)
-            if res.status_code == 200 or res.status_code == 201:
-
-            	return json.dumps({'success': True})
-
-            else:
-            	res = Response(json.dumps({'success': False, 'error': str(res.content)}), status=res.status_code)
-                return res
+            res = Response(json.dumps({'data': data}), status=200)
+            return res
+                
 
     except Exception as e:
         print(e)
