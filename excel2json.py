@@ -33,7 +33,7 @@ def shaiValidate(data):
         if key in dateKeys:
             data[key] = time.mktime(time.strptime(val, "%d.%m.%Y %H:%M")) * 1000
 
-        elif data[key] == 'birthDate':
+        elif key == 'birthDate':
 
             data[key] = time.mktime(time.strptime(val, "%d.%m.%Y")) * 1000
 
