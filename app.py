@@ -41,6 +41,8 @@ def upload_file():
     try:
         print('req')
         file = request.files['file']
+
+        print(request)
         
         if check_ex(file.filename):
             full_path = './' + file.filename
