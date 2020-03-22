@@ -79,6 +79,8 @@ def upload_json():
     try:
         data = json.loads(request.form['data'])
 
+        print(data)
+
         path = excel2json.formatJson(data)
 
         res =  send_from_directory(directory='', filename=path)

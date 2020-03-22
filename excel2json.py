@@ -54,16 +54,24 @@ def formatExcel(path):
 def formatJson(data):
 
     d = {}
-    for obj in data:
-        
-        for key, val in obj.items():
+    
+    for key in schema.schema['properties'].keys():
+        for obj in data:
             try:
-                d[key].append(val)
-            
+                
+                value = obj[key]
+                
+            except:
+                value = None
+                
+            try:
+                d[key].append(value)
             except:
                 d[key] = []
-                d[key].append(val)
+                d[key].append(value)
+                   
 
+ 
     data = pd.DataFrame(d)
 
     data.to_excel('excel.xlsx')
