@@ -18,7 +18,8 @@ prop = {
         'type': 'string',
 
     },
-    'contactPhone': {
+
+    'medicalCondition': {
         'type': 'string',
 
     },
@@ -73,8 +74,8 @@ prop = {
     'type': 'string'
 },
 
-'age': {
-    'type': 'number'
+'birthDate': {
+    'type': 'string'
 },
 
 'apotropus': {
@@ -91,6 +92,10 @@ prop = {
 
 'altContactPhone': {
     'type': 'string'
+},
+
+'smokes': {
+    'type': 'boolean'
 },
 
 

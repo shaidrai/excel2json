@@ -32,6 +32,11 @@ def shaiValidate(data):
     for key, val in data.items():
         if key in dateKeys:
             data[key] = time.mktime(time.strptime(val, "%d.%m.%Y %H:%M")) * 1000
+
+        elif data[key] == 'birthDate':
+
+            data[key] = time.mktime(time.strptime(val, "%d.%m.%Y")) * 1000
+
     return data
 
 
@@ -60,5 +65,7 @@ def formatJson(data):
                 d[key].append(val)
 
     data = pd.DataFrame(d)
+
     data.to_excel('excel.xlsx')
+
     return 'excel.xlsx'
