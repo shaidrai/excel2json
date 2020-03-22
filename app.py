@@ -68,6 +68,30 @@ def upload_file():
         return res
 
 
+
+
+@app.route('/api/json2excel', methods=['POST'])
+@cross_origin()
+def upload_json():
+    print("x")
+    try:
+        data = json.loads(request.form['data'])
+
+        path = excel2json.formatJson(data)
+
+        res =  send_from_directory(directory='', filename=path)
+
+        return res
+        
+        #excel2json.formatJson()
+
+    except Exception as e:
+        #print(e)
+        print("sssss")
+        res = Response(json.dumps({'success': False, 'error': str(e)}), status=400)
+    
+        return res
+
 if __name__ == "__main__":
     app.run(port=port, debug=True)
 

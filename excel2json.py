@@ -44,3 +44,21 @@ def formatExcel(path):
         shaiValidate(row)
         # Use try except outside of the function
     return data
+
+
+def formatJson(data):
+
+    d = {}
+    for obj in data:
+        
+        for key, val in obj.items():
+            try:
+                d[key].append(val)
+            
+            except:
+                d[key] = []
+                d[key].append(val)
+
+    data = pd.DataFrame(d)
+    data.to_excel('excel.xlsx')
+    return 'excel.xlsx'
