@@ -90,6 +90,7 @@ def upload_json():
     except Exception as e:
         #print(e)
         print("sssss")
+        print(e)
         res = Response(json.dumps({'success': False, 'error': str(e)}), status=400)
     
         return res
