@@ -29,13 +29,20 @@ def shaiValidate(data):
             'collectingDate',
             'receptionTime']
 
+
     for key, val in data.items():
-        if key in dateKeys and val != '' and type(val) == 'str':
+
+
+
+
+        if key in dateKeys and val != '' and str(type(val)) == "<class 'str'>":
+
+            print('shaishai')
  
 
             data[key] = time.mktime(time.strptime(val, "%d.%m.%Y %H:%M")) * 1000
 
-        elif key == 'birthDate' and val != '' and type(val) == 'str':
+        elif key == 'birthDate' and val != '' and str(type(val)) == "<class 'str'>":
 
 
             data[key] = time.mktime(time.strptime(val, "%d.%m.%Y")) * 1000
