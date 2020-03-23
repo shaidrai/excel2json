@@ -30,10 +30,13 @@ def shaiValidate(data):
             'receptionTime']
 
     for key, val in data.items():
-        if key in dateKeys:
+        if key in dateKeys and val != '' and type(val) == 'str':
+ 
+
             data[key] = time.mktime(time.strptime(val, "%d.%m.%Y %H:%M")) * 1000
 
-        elif key == 'birthDate':
+        elif key == 'birthDate' and val != '' and type(val) == 'str':
+
 
             data[key] = time.mktime(time.strptime(val, "%d.%m.%Y")) * 1000
 
@@ -42,10 +45,15 @@ def shaiValidate(data):
 
 def formatExcel(path):
     a = pd.read_excel(path)
+
+
     data = pandasDictFormat(a.to_dict())
 
+
+
     for row in data:
-        jsonschema.validate(row, schema=schema.schema)
+
+        # jsonschema.validate(row, schema=schema.schema)
         shaiValidate(row)
         # Use try except outside of the function
     return data
@@ -77,3 +85,4 @@ def formatJson(data):
     data.to_excel('excel.xlsx')
 
     return 'excel.xlsx'
+

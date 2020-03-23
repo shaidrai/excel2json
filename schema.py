@@ -164,16 +164,8 @@ schema = {
     "required":
         [
          'IDNumber',
+   
          
-         'firstName',
-         'lastName',
-         'city',
-         'address',
-         'phone', 
-            'releaseDate',
-            'hafnayaTime',
-            'arrivingTime',
-            'collectingDate',
-            'receptionTime',
+
          ]
 }

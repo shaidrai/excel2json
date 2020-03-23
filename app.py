@@ -42,7 +42,7 @@ def upload_file():
         print('req')
         file = request.files['file']
 
-        print(request)
+        print('request')
         
         if check_ex(file.filename):
             full_path = './' + file.filename
@@ -53,14 +53,19 @@ def upload_file():
             # Formating the file to json
             data = excel2json.formatExcel(full_path)
 
+            
+
             # Deleting the file
             os.remove(full_path)
 
             print("finished formating")
-            data = json.dumps(data)
+            data = json.dumps(data, ensure_ascii=False).encode('utf8')
+
+            data = data.decode()
+
             print(data)
 
-            res = Response(json.dumps({'data': data}), status=200)
+            res = Response(data, status=200)
             return res
                 
 
