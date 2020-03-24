@@ -2,7 +2,7 @@ import pandas as pd
 import time
 import jsonschema
 import schema
-
+import math
 
 # Convert the dictionary pandas format to array with objects
 def pandasDictFormat(ditionary):
@@ -12,12 +12,27 @@ def pandasDictFormat(ditionary):
     for counter in range(len(ditionary['roomNum'])):
         dict1 = {}
         for key, val in ditionary.items():
-            if key in int2string:
+
+            if key in int2string and val[counter] != None:
                 dict1[key] = str(val[counter])
             else:
                 dict1[key] = val[counter]
         data.append(dict1)
     return data
+
+
+
+def noneCheck(num):
+    try:
+        if math.isnan(num):
+            return None
+        else:
+            return num
+    except:
+        return num
+
+
+
 
 
 # Validate the date and time format and replacing it to timestamp
@@ -37,7 +52,7 @@ def shaiValidate(data):
 
         if key in dateKeys and val != '' and str(type(val)) == "<class 'str'>":
 
-            print('shaishai')
+
  
 
             data[key] = time.mktime(time.strptime(val, "%d.%m.%Y %H:%M")) * 1000
@@ -53,6 +68,8 @@ def shaiValidate(data):
 def formatExcel(path):
     a = pd.read_excel(path)
 
+    for column in a.columns:
+        a[column] = a[column].apply(noneCheck)
 
     data = pandasDictFormat(a.to_dict())
 
