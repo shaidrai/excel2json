@@ -15,7 +15,7 @@ if ON_HEROKU:
     # get the heroku port
     port = int(os.environ.get('PORT', 17995))  # as per OP comments default is 17995
 else:
-    port = 3000
+    port = 80
 
 
 def check_ex(filename):
