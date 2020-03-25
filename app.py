@@ -15,7 +15,7 @@ if ON_HEROKU:
     # get the heroku port
     port = int(os.environ.get('PORT', 17995))  # as per OP comments default is 17995
 else:
-    port = 80
+    port = 3000
 
 
 def check_ex(filename):
@@ -88,7 +88,7 @@ def upload_json():
 
         path = excel2json.formatJson(data)
 
-        res =  send_from_directory(directory='', filename=path)
+        res =  json.dumps({"path": path})
 
         return res
         
@@ -99,8 +99,13 @@ def upload_json():
         print("sssss")
         print(e)
         res = Response(json.dumps({'success': False, 'error': str(e)}), status=400)
-    
         return res
+
+
+@app.route('/api/getExcelFile/<path:path>')
+@cross_origin()
+def root(path):
+    return send_from_directory('./public', path)
 
 if __name__ == "__main__":
     app.run(port=port, debug=True)

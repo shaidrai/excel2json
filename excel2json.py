@@ -3,7 +3,7 @@ import time
 import jsonschema
 import schema
 import math
-
+import random
 # Convert the dictionary pandas format to array with objects
 def pandasDictFormat(ditionary):
     data = []
@@ -106,7 +106,11 @@ def formatJson(data):
  
     data = pd.DataFrame(d)
 
-    data.to_excel('excel.xlsx')
+    filename = str(random.random()).replace('.','')
 
-    return 'excel.xlsx'
+    path = filename +'.xlsx'
+
+    data.to_excel(path)
+
+    return path
 
