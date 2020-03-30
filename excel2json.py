@@ -7,7 +7,7 @@ import random
 # Convert the dictionary pandas format to array with objects
 def pandasDictFormat(ditionary):
     data = []
-    int2string = ['phone','contactPhone','IDNumber','numChildren','altContactPhone']
+    int2string = ['phone','contactPhone','IDNumber','numChildren','altContactPhone', 'roomNum', 'guidelines']
                   
     for counter in range(len(ditionary['roomNum'])):
         dict1 = {}
@@ -17,6 +17,9 @@ def pandasDictFormat(ditionary):
                 dict1[key] = str(val[counter])
             else:
                 dict1[key] = val[counter]
+
+            if dict1[key] == 'nan':
+                dict1[key] = None
         data.append(dict1)
     return data
 
