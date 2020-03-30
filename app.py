@@ -53,7 +53,7 @@ def upload_file():
             # Formating the file to json
             data = excel2json.formatExcel(full_path)
 
-            
+
 
             # Deleting the file
             os.remove(full_path)
@@ -63,7 +63,7 @@ def upload_file():
 
             data = data.decode()
 
-            print(data)
+            #print(data)
 
             res = Response(data, status=200)
             return res
@@ -109,4 +109,6 @@ def root(path):
 
 if __name__ == "__main__":
     app.run(port=port, debug=True)
+
+#last version
 

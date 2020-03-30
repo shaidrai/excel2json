@@ -42,27 +42,31 @@ def shaiValidate(data):
             'hafnayaTime',
             'arrivingTime',
             'collectingDate',
-            'receptionTime']
+            'receptionTime', 'birthDate']
 
 
     for key, val in data.items():
 
+        if key in dateKeys and val != '' and val != None:
+            #print(type(val))
+            val = str(val)
+            print(type(val))
+            try:
+                data[key] = time.mktime(time.strptime(str(val), "%d.%m.%Y %H:%M:%S")) * 1000
 
+            
+                try:
+                    data[key] = time.mktime(time.strptime(str(val), "%d.%m.%Y")) * 1000
+                except:
+                    data[key] = None
 
+            except:
+                    data[key] = None
 
-        if key in dateKeys and val != '' and str(type(val)) == "<class 'str'>":
-
-
- 
-
-            data[key] = time.mktime(time.strptime(val, "%d.%m.%Y %H:%M")) * 1000
-
-        elif key == 'birthDate' and val != '' and str(type(val)) == "<class 'str'>":
-
-
-            data[key] = time.mktime(time.strptime(val, "%d.%m.%Y")) * 1000
+            
 
     return data
+
 
 
 def formatExcel(path):
