@@ -7,7 +7,7 @@ import random
 # Convert the dictionary pandas format to array with objects
 def pandasDictFormat(ditionary):
     data = []
-    int2string = ['phone','contactPhone','IDNumber','numChildren','altContactPhone', 'roomNum', 'guidelines']
+    int2string = ['phone','contactPhone','IDNumber','numChildren','altContactPhone']
                   
     for counter in range(len(ditionary['roomNum'])):
         dict1 = {}
@@ -24,15 +24,6 @@ def pandasDictFormat(ditionary):
     return data
 
 
-
-def noneCheck(num):
-    try:
-        if math.isnan(num):
-            return None
-        else:
-            return num
-    except:
-        return num
 
 
 
@@ -75,8 +66,7 @@ def shaiValidate(data):
 def formatExcel(path):
     a = pd.read_excel(path)
 
-    for column in a.columns:
-        a[column] = a[column].apply(noneCheck)
+    a = a.where(pd.notnull(a), None)
 
     data = pandasDictFormat(a.to_dict())
 
