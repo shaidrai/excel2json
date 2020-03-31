@@ -105,9 +105,9 @@ def formatJson(data):
 
     filename = str(random.random()).replace('.','')
 
-    path = filename +'.xlsx'
+    path =  filename +'.xlsx'
 
-    data.to_excel(path)
+    data.to_excel('public/' + path)
 
     return path
 

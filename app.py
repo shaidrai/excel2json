@@ -105,6 +105,7 @@ def upload_json():
 @app.route('/api/getExcelFile/<path:path>')
 @cross_origin()
 def root(path):
+    print(path)
     return send_from_directory('./public', path)
 
 if __name__ == "__main__":
